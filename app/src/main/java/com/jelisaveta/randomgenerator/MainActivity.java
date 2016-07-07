@@ -24,14 +24,21 @@ public class MainActivity extends AppCompatActivity {
         dugme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int max = parseInt(max_broj.getText().toString());
+                int max = 6;
+                try {
+                    max = parseInt(max_broj.getText().toString());
+                }
+                catch (NumberFormatException e){
+                    Toast.makeText(MainActivity.this, "Invalid number", Toast.LENGTH_SHORT).show();
+                }
                 int MIN = 1;
                 Random rand = new Random();
                 int r_broj = rand.nextInt(max-MIN+1) + MIN;
                 TextView izlaz = (TextView)findViewById(R.id.ekran);
-                izlaz.setText("Random broj je " + r_broj);
+                izlaz.setText(getResources().getString(R.string.random_broj_je, r_broj));
                 //Toast t = Toast.makeText(MainActivity.this, r_broj+"", Toast.LENGTH_SHORT);
                 //t.show();
+                
             }
         });
     }
